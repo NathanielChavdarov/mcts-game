@@ -11,6 +11,9 @@ class Game:
         self.board.initialise()
         while True:
             self.turn(1)
+            self.check_state()
+            self.turn(2)
+            self.check_state()
 
 
 class Board:
