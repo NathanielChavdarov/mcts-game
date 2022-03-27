@@ -11,8 +11,15 @@ class Game:
         self.board.initialise()
         while True:
             self.turn(1)
-            self.check_state()
+            if self.check_state() == 0:
+                print("player 1 has won!")
+                # to be implemented
+                return self.end()
             self.turn(2)
+            if self.check_state() == 1:
+                print("player 2 has won!")
+                # to be implemented
+                return self.end()
             self.check_state()
 
 
@@ -24,6 +31,9 @@ class Board:
 
     def initialise(self):
         raise Exception("to be implemented in subclass")
+
+    def check_state(self):
+        return 2
 
 
 class NoughtsAndCrossesBoard(Board):
