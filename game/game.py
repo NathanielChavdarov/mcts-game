@@ -20,3 +20,11 @@ class Game:
 
     def turn(self, player: int):
         move = self.players[player].choosemove(self.board)
+
+    def check_state(self):
+        if self.moves_available() == False && self.turn() == 0:
+            return 0
+        elif self.moves_available() == False && self.turn() == 1:
+            return 1
+        else:
+            pass
