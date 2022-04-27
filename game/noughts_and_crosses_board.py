@@ -53,3 +53,19 @@ class NoughtsAndCrossesBoard(Board):
 
     def stalemate(self) -> bool:
         return all(all(cell != " " for cell in row) for row in self.brd)
+
+    def score(self, player: int) -> int:
+        if self.has_won(player):
+            return 100
+        if self.has_won(1 - player):
+            return -100
+        p = "XO"[player]
+        # counting row scores
+        score = sum([2 if [v == p for v in row].count(True) == 2 else 0 for row in self.brd])
+        # counting column scores
+        score += sum([2 if [row[i] == p for row in brd].count(True) == 2 else 0 for i in range(3)])
+        # counting right to left diagonal
+        score += 2 if (brd[0][2], brd[1][1], brd[2][0]).count(p) == 2 else 0
+        # counting left to right diagonal
+        score += 2 if (brd[0][0], brd[1][1], brd[2][2]).count(p) == 2 else 0
+        return score
