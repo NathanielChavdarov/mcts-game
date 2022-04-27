@@ -12,5 +12,9 @@ class NoughtsAndCrossesRandomPlayer(NoughtsAndCrossesPlayer):
         super(NoughtsAndCrossesRandomPlayer, self).__init__()
 
     def choosemove(self, board: NoughtsAndCrossesBoard) -> Tuple[int, int]:
-        x = 
-        return x, y
+        # don't call this function when the board is full
+        while True:
+            x = random.randint(0, board.WIDTH - 1)
+            y = random.randint(0, board.HEIGHT - 1)
+            if board.get(x, y) == " ":
+                return x, y

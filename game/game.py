@@ -4,27 +4,22 @@ class Game:
     def __init__(self):
         pass
 
-    def start(self):
+    def play(self) -> int:
         self.board.initialise()
         while True:
             self.turn(0)
-            if self.check_state() == 0:
-                print("player 1 has won!")
-                # to be implemented
-                return self.end()
+            # self.board.display()
+            if self.board.has_won(0):
+                # print("player 1 has won!")
+                return 0
+            if self.board.stalemate():
+                return -1
             self.turn(1)
-            if self.check_state() == 1:
-                print("player 2 has won!")
-                # to be implemented
-                return self.end()
+            # self.board.display()
+            if self.board.has_won(1):
+                # print("player 2 has won!")
+                return 1
 
     def turn(self, player: int):
         move = self.players[player].choosemove(self.board)
-
-    def check_state(self):
-        if self.moves_available() == False && self.turn() == 0:
-            return 0
-        elif self.moves_available() == False && self.turn() == 1:
-            return 1
-        else:
-            pass
+        self.board.update(move, player)
