@@ -1,4 +1,5 @@
 from .noughts_and_crosses_game import NoughtsAndCrossesGame
 from .noughts_and_crosses_random_player import NoughtsAndCrossesRandomPlayer
+from .noughts_and_crosses_player import NoughtsAndCrossesPlayer
 
 # from .noughts_and_crosses_player import NoughtsAndCrossesPlayer
